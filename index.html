@@ -122,7 +122,6 @@
             border: 1px solid var(--border-metal);
             border-top: 4px solid var(--border-metal);
             backdrop-filter: blur(5px);
-            transition: all 0.4s ease;
         }
         
         .btn {
@@ -147,42 +146,44 @@
         }
 
         .footer-logos {
-            padding: 80px 20px;
+            padding: 100px 20px;
             background: #ffffff;
-            border-top: 4px solid var(--accent-asturias);
+            border-top: 6px solid var(--accent-asturias);
             text-align: center;
         }
 
-        .footer-block { margin-bottom: 60px; }
+        .footer-block { margin-bottom: 100px; }
 
         .footer-title {
             color: #111;
-            font-size: 1.5rem;
-            margin-bottom: 40px;
+            font-size: 2.2rem;
+            margin-bottom: 60px;
             font-weight: 900;
-            border-bottom: 2px solid #ddd;
+            border-bottom: 4px solid #111;
             display: inline-block;
-            padding-bottom: 5px;
+            padding-bottom: 10px;
+            letter-spacing: 2px;
         }
 
-        /* AJUSTE PARA SALTO DE LÍNEA EN ORGANIZA */
         .logo-container-column {
             display: flex;
-            flex-direction: column; /* Organiza uno encima de otro */
+            flex-direction: column;
             align-items: center;
-            gap: 50px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .logo-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
             gap: 40px;
             max-width: 1200px;
             margin: 0 auto;
+        }
+
+        /* --- AJUSTE PARA PATROCINADORES EN UNA LÍNEA --- */
+        .logo-container-row {
+            display: flex;
+            justify-content: center; /* Centrar los logos */
+            align-items: center;
+            flex-wrap: nowrap; /* FORZAR UNA SOLA LÍNEA */
+            gap: 30px; /* Reducido espacio para que entren todos */
+            max-width: 100%; /* Usar todo el ancho disponible */
+            margin: 0 auto;
+            overflow: hidden; /* Evitar desbordamiento si la pantalla es muy pequeña */
         }
 
         .logo-img {
@@ -190,19 +191,40 @@
             height: auto;
             display: block;
             object-fit: contain;
+            transition: transform 0.3s ease;
         }
 
-        /* TAMAÑOS DE LOGOS */
-        .logo-scaleauto { width: 300px; }
-        .logo-valles-double { width: 280px; } /* DOBLE DE TAMAÑO (antes 140px) */
-        .logo-sponsor { width: 140px; max-height: 100px; }
+        .logo-img:hover {
+            transform: scale(1.1);
+        }
+
+        /* TAMAÑOS DE LOGOS AJUSTADOS */
+        .logo-sariego { width: 400px; }
+        .logo-scaleauto { width: 320px; }
+        .logo-valles { width: 140px; }
+        
+        /* Logos de patrocinadores más pequeños para que entren en una línea */
+        .logo-sponsor-row { 
+            width: 150px; /* Reducido de 180px */
+            max-height: 90px; /* Reducido de 120px */
+        }
 
         .digit { color: var(--accent-neon); font-weight: 700; }
 
+        @media (max-width: 1024px) {
+            /* En tablets y móviles grandes, permitimos que bajen si no entran */
+            .logo-container-row {
+                flex-wrap: wrap;
+                gap: 30px;
+            }
+        }
+
         @media (max-width: 768px) {
-            .hero h1 { font-size: 3rem; }
-            .logo-scaleauto { width: 200px; }
-            .logo-valles-double { width: 220px; }
+            .footer-title { font-size: 1.6rem; }
+            .logo-sariego { width: 280px; }
+            .logo-scaleauto { width: 240px; }
+            .logo-valles { width: 120px; }
+            .logo-sponsor-row { width: 110px; }
         }
     </style>
 </head>
@@ -222,7 +244,7 @@
             <h3>Polideportivo Municipal de Sariego</h3>
             <p><strong>DIRECCIÓN:</strong> C/ Hermanos González Valdés 71, La Vega.</p>
             <p><em>Referencia: Junto al Colegio Público Salvador Vega Berros</em></p>
-            <a href="https://www.google.com/maps/search/?api=1&query=Polideportivo+Municipal+de+Sariego" target="_blank" class="btn">INICIAR GPS</a>
+            <a href="https://maps.google.com/?q=Polideportivo+Municipal+de+Sariego" target="_blank" class="btn">INICIAR GPS</a>
         </div>
     </section>
 
@@ -246,6 +268,11 @@
         <h2>ALOJAMIENTO</h2>
         <div class="grid">
             <div class="card">
+                <h3>Hotel VILLA de NAVA</h3>
+                <p>Nava | <span class="digit">985 71 80 70</span></p>
+                <a href="tel:+34985718070" class="btn">LLAMAR</a>
+            </div>
+            <div class="card">
                 <h3>Hotel CRUZ DE LA VICTORIA</h3>
                 <p>El Berrón | <span class="digit">984 08 11 08</span></p>
                 <a href="tel:+34984081108" class="btn">LLAMAR</a>
@@ -263,22 +290,40 @@
     <div class="footer-block">
         <div class="footer-title">ORGANIZA:</div>
         <div class="logo-container-column">
-            <img src="WhatsApp Image 2026-03-09 at 20.44.32 (2).jpeg" alt="SCALEAUTO" class="logo-img logo-scaleauto">
-            <img src="Ayuntamiento.png" alt="Club Slot Valles de Asturias" class="logo-img logo-valles-double">
+            <a href="https://www.sariego.org/" target="_blank">
+                <img src="Sariego.png" alt="Ayuntamiento de Sariego" class="logo-img logo-sariego">
+            </a>
+            <a href="https://scaleauto-slot.com/" target="_blank">
+                <img src="Scaleauto.jpeg" alt="SCALEAUTO" class="logo-img logo-scaleauto">
+            </a>
+            <a href="https://www.facebook.com/clubslotvallesdeasturias/" target="_blank">
+                <img src="Valles.png" alt="Club Slot Valles de Asturias" class="logo-img logo-valles">
+            </a>
         </div>
     </div>
 
     <div class="footer-block">
         <div class="footer-title">PATROCINAN:</div>
-        <div class="logo-container">
-            <img src="WhatsApp Image 2026-03-10 at 10.59.20.jpeg" alt="Sponsor" class="logo-img logo-sponsor">
-            <img src="WhatsApp Image 2026-03-09 at 20.41.49 (2).jpeg" alt="Sponsor" class="logo-img logo-sponsor">
-            <img src="WhatsApp Image 2026-03-09 at 20.44.32 (1).jpeg" alt="Sponsor" class="logo-img logo-sponsor">
-            <img src="WhatsApp Image 2026-03-09 at 20.41.48 (5).jpeg" alt="Sponsor" class="logo-img logo-sponsor">
-            <img src="WhatsApp Image 2026-03-09 at 20.41.48 (6).jpeg" alt="Sponsor" class="logo-img logo-sponsor">
-            <img src="WhatsApp Image 2026-03-09 at 20.41.48 (7).jpeg" alt="Sponsor" class="logo-img logo-sponsor">
-            <img src="WhatsApp Image 2026-03-09 at 20.41.48 (8).jpeg" alt="Sponsor" class="logo-img logo-sponsor">
-            <img src="WhatsApp Image 2026-03-09 at 20.41.48 (9).jpeg" alt="Sponsor" class="logo-img logo-sponsor">
+        <div class="logo-container-row">
+            <a href="https://www.sidrafoncueva.com/" target="_blank">
+                <img src="Foncueva.jpeg" alt="Sidra Foncueva" class="logo-img logo-sponsor-row">
+            </a>
+            <a href="https://fisioterapiagraciela.es/" target="_blank">
+                <img src="Fgraciela.png" alt="Fisioterapia Graciela" class="logo-img logo-sponsor-row">
+            </a>
+            <a href="https://www.instagram.com/aluminios_aluprin/" target="_blank">
+                <img src="Aluprin.jpg" alt="Aluprin" class="logo-img logo-sponsor-row">
+            </a>
+            <a href="https://www.instagram.com/clinica_podologica_arnaiz/?hl=es" target="_blank">
+                <img src="Arnaiz.jpeg" alt="Clínica Arnaiz" class="logo-img logo-sponsor-row">
+            </a>
+            <a href="https://www.clinicadentalquirinal.com/" target="_blank">
+                <img src="Quirinal.jpeg" alt="Clínica Dental Quirinal" class="logo-img logo-sponsor-row">
+            </a>
+            <a href="https://www.construccionesfoncueva.com/" target="_blank">
+                <img src="FoncuenvaC.jpeg" alt="Construcciones Foncueva" class="logo-img logo-sponsor-row">
+            </a>
+        
         </div>
     </div>
 </footer>
